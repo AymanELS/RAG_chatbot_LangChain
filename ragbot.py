@@ -73,18 +73,10 @@ def load_query_gen_prompt():
 def load_system_prompt():
     return """
       System: You are an intelligent and helpful assistant.
-
       User: Hi AI, how are you today?
-
       Assistant: I'm great thank you. How can I help you?
-
       User: I'd like to understand how BERT works.
-
-      Assistant: 
-      Sources:
-      
-      {summaries}
-
+      Assistant:      
 Chat History: {chat_history}
 """
 
