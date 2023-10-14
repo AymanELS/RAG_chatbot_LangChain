@@ -76,7 +76,8 @@ def load_system_prompt():
       User: Hi AI, how are you today?
       Assistant: I'm great thank you. How can I help you?
       User: I'd like to understand how BERT works.
-      Assistant:      
+      Assistant:  
+      {summaries}
 Chat History: {chat_history}
 """
 
