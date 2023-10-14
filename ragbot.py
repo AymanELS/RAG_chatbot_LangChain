@@ -19,8 +19,6 @@ dataset = load_dataset(
 
 # print(dataset)
 
-
-# embeddings = CohereEmbeddings(model='embed-english-light-v2.0',cohere_api_key='YOUR KEY')
 embeddings = HuggingFaceEmbeddings()
 # initialize pinecone
 pinecone.init(
