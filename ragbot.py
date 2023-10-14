@@ -114,12 +114,20 @@ query = "explain llama 2 in 100 words"
 result = chain({"question": query})
 print(result['chat_history'][-1].content)
 """
->>> Llama 2 is a language model developed by Facebook AI Research. It is based on the BERT architecture and is designed for commercial and research use in English. Llama 2 can be used for a variety of natural language generation tasks and is intended for assistant-like chat. The model has undergone pretraining using publicly available online sources and fine-tuning using custom training libraries. Facebook AI Research is committed to responsible AI innovation and has released Llama 2 openly to encourage collaboration and ensure the safety and ethical use of the model. Code examples and a Responsible Use Guide are provided to assist developers in replicating safe generations with Llama 2.
+>>> Llama 2 is a language model developed by Facebook AI Research. It is based on the BERT architecture and is designed for commercial
+and research use in English. Llama 2 can be used for a variety of natural language generation tasks and is intended for assistant-like chat. 
+The model has undergone pretraining using publicly available online sources and fine-tuning using custom training libraries.
+Facebook AI Research is committed to responsible AI innovation and has released Llama 2 openly to encourage collaboration and ensure the safety
+and ethical use of the model. Code examples and a Responsible Use Guide are provided to assist developers in replicating safe generations with Llama 2.
 """
 
 query = "what safety measures were used in the development of llama 2? answer in less than 100 words"
 result = chain({"question": query})
 print(result['chat_history'][-1].content)
 """
-The development of Llama 2 includes safety measures to ensure responsible AI use. These measures include safety tuning to balance helpfulness and caution, an open release strategy to promote transparency and collaboration, and the provision of code examples and a Responsible Use Guide to assist developers in replicating safe generations. Additionally, the model undergoes benchmark evaluation to assess its performance, although it is important to note that benchmarks may have limitations in evaluating safety. Monitoring disaggregated metrics and benchmarks can help analyze the model's behavior across different demographic groups.
+The development of Llama 2 includes safety measures to ensure responsible AI use. These measures include safety tuning to balance helpfulness and
+caution, an open release strategy to promote transparency and collaboration, and the provision of code examples and a Responsible Use Guide to assist
+developers in replicating safe generations. Additionally, the model undergoes benchmark evaluation to assess its performance, although it is important
+to note that benchmarks may have limitations in evaluating safety. Monitoring disaggregated metrics and benchmarks can help analyze the model's behavior
+across different demographic groups.
 """
