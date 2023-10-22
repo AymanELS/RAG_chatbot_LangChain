@@ -63,6 +63,7 @@ retriever = vectorstore.as_retriever()
 
 def load_query_gen_prompt():
     return """Below is a summary of the conversation so far, and a new question asked by the user that needs to be answered by searching in a knowledge base. Generate a search query based on the conversation and the new question.
+        Don't generate the search query if the user is conversing generally or engaging in small talk. In which case just return the original question.
     Chat History:
     {chat_history}
     Question:
@@ -73,17 +74,22 @@ def load_query_gen_prompt():
 
 def load_system_prompt():
     return """
-      System: You are an intelligent and helpful assistant. You are designed to be reliable and friendly. ALWAYS return a "SOURCES" part in your answer, except for small-talk conversations.
+       System: You are an intelligent and friendly AI assistant. 
+      The AI is talkative and provides lots of specific details from its context. 
+      ALWAYS return a "SOURCES" part in your answer, except for small-talk conversations. 
+      Answer with the facts listed in the list of sources below. If there isn't enough information below, say you don't know.
+      If asking a clarifying question to the user would help, ask the question. 
+
       User: Hi AI, how are you today?
+
       Assistant: I'm great thank you. How can I help you?
+
       User: I'd like to understand how BERT works.
-      Assistant:  
+
+      Assistant:
       
-      {summaries}
-        Sources:
-    ---------------------
-        {context}
-    ---------------------
+      Sources:
+      
 Chat History: {chat_history}
 """
 
@@ -113,20 +119,23 @@ query = "explain llama 2 in 100 words"
 result = chain({"question": query})
 print(result['chat_history'][-1].content)
 """
->>> Llama 2 is a language model developed by Facebook AI Research. It is based on the BERT architecture and is designed for commercial
-and research use in English. Llama 2 can be used for a variety of natural language generation tasks and is intended for assistant-like chat. 
-The model has undergone pretraining using publicly available online sources and fine-tuning using custom training libraries.
-Facebook AI Research is committed to responsible AI innovation and has released Llama 2 openly to encourage collaboration and ensure the safety
-and ethical use of the model. Code examples and a Responsible Use Guide are provided to assist developers in replicating safe generations with Llama 2.
+>>>LLAMA 2 is a language model developed by Facebook AI Research. It is trained using a pretraining and fine-tuning process. 
+In the pretraining phase, the model is trained on a large corpus of text data from the internet to learn general language patterns.
+During fine-tuning, the model is trained on specific tasks, such as question answering or sentiment analysis, using a smaller dataset specific to the task. 
+The development of LLAMA 2 includes safety measures such as safety-specific data annotation, red-teaming, iterative evaluations, and applying basic safety techniques. 
+The aim is to encourage responsible AI innovation and collaboration within the AI community to improve the safety of the models.
+
+Source: http://arxiv.org/pdf/2307.09288
 """
 
 query = "what safety measures were used in the development of llama 2? answer in less than 100 words"
 result = chain({"question": query})
 print(result['chat_history'][-1].content)
 """
-The development of Llama 2 includes safety measures to ensure responsible AI use. These measures include safety tuning to balance helpfulness and
-caution, an open release strategy to promote transparency and collaboration, and the provision of code examples and a Responsible Use Guide to assist
-developers in replicating safe generations. Additionally, the model undergoes benchmark evaluation to assess its performance, although it is important
-to note that benchmarks may have limitations in evaluating safety. Monitoring disaggregated metrics and benchmarks can help analyze the model's behavior
-across different demographic groups.
+The safety measures used in the development of Llama 2 include safety-specific data annotation and tuning, red-teaming, 
+iterative evaluations, and applying basic safety techniques at the user input and model output layers. 
+The developers also provide code examples to help replicate their safe generations and share a Responsible Use Guide for guidelines on safe development and deployment. 
+The aim is to encourage responsible AI innovation and collaboration within the AI community to improve the safety of the models.
+
+Source: http://arxiv.org/pdf/2307.09288
 """
